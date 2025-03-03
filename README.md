@@ -27,3 +27,4 @@ Smart Rx es una aplicación web desarrollada en Angular v19 diseñada para facil
 3.- Para instalar dependencias de desarrollo: npm install --save-dev @angular-devkit/build-angular@^19.1.7 @angular/cli@^19.1.7 @angular/compiler-cli@^19.1.0 @types/jasmine@~5.1.0 jasmine-core@~5.5.0 karma@~6.4.0 karma-chrome-launcher@~3.2.0 karma-coverage@~2.2.0 karma-jasmine@~5.1.0 karma-jasmine-html-reporter@~2.1.0 typescript@~5.7.2
 
 # smart-rx
+# smart-rx
