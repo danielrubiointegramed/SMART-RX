@@ -1,0 +1,212 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Drawer IZQUIERDO (Menú lateral) -->
+  <mat-sidenav
+    class="sidenav"
+    mode="side"
+    [opened]="drawerOpen"
+    [fixedInViewport]="true"
+    position="start"
+  >
+    <div class="profile-section">
+      <button mat-icon-button [routerLink]="['/medico-profile']">
+        <mat-icon>person</mat-icon>
+      </button>
+      <div class="user-info">
+        <h3>{{ nombre }}</h3>
+        <span>{{ correo }}</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <mat-list-item (click)="home(); toggleDrawer()" routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span>Regresar</span>
+      </mat-list-item>
+      <mat-list-item
+        (click)="cambiarContrasena(); toggleDrawer()"
+        routerLink="/change-password"
+      >
+        <mat-icon>lock</mat-icon>
+        <span>Actualizar contraseña</span>
+      </mat-list-item>
+      <mat-list-item (click)="descargarAviso(); toggleDrawer()">
+        <mat-icon>download</mat-icon>
+        <span>Descargar aviso</span>
+      </mat-list-item>
+      <mat-list-item (click)="irAvisoPrivacidad(); toggleDrawer()">
+        <mat-icon>health_and_safety</mat-icon>
+        <span>Aviso de privacidad</span>
+      </mat-list-item>
+      <mat-list-item (click)="irTerminosCondiciones(); toggleDrawer()">
+        <mat-icon>gavel</mat-icon>
+        <span>Términos y condiciones</span>
+      </mat-list-item>
+      <mat-list-item (click)="salir(); toggleDrawer()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Salir</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <mat-sidenav-content class="content-layout">
+    <!-- Barra superior -->
+    <mat-toolbar class="top-bar">
+      <button mat-icon-button (click)="toggleDrawer()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="title">Perfil del Médico</span>
+      <span class="spacer"></span>
+      <!-- Botón para tema claro/oscuro -->
+      <button mat-icon-button (click)="toggleTheme()">
+        <mat-icon>{{ isDark ? "light_mode" : "dark_mode" }}</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="profile-container">
+      <!-- Encabezado con nombre y correo -->
+      <mat-card class="profile-header-card">
+        <mat-card-content class="profile-header-content">
+          <div class="profile-details">
+            <h2>
+              Dr. {{ nombre }} {{ apellidoPaterno }} {{ apellidoMaterno }}
+            </h2>
+            <p>{{ correo }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Barra de estado: ícono (doctor) + barra de progreso lineal + porcentaje -->
+    <!-- Barra de estado: ícono médico, barra de progreso lineal y porcentaje -->
+<div class="status-container">
+  <span class="material-symbols-outlined md-48">stethoscope</span>
+  <mat-progress-bar class="status-bar" [value]="porcentajePerfil" mode="determinate"></mat-progress-bar>
+  <div class="status-label">{{ porcentajePerfil }}%</div>
+</div>
+
+
+      <!-- Datos Personales -->
+      <mat-card>
+        <mat-card-title>Datos Personales</mat-card-title>
+        <mat-card-content>
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput [(ngModel)]="nombre" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Apellido Paterno</mat-label>
+              <input matInput [(ngModel)]="apellidoPaterno" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Apellido Materno</mat-label>
+              <input matInput [(ngModel)]="apellidoMaterno" />
+            </mat-form-field>
+          </div>
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput type="email" [(ngModel)]="correo" readonly />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Cédulas Profesionales -->
+      <mat-card>
+        <mat-card-title>Cédulas Profesionales</mat-card-title>
+        <mat-card-content>
+          <div class="lista">
+            <div
+              class="lista-item"
+              *ngFor="let cedula of cedulas; let i = index"
+            >
+              <span
+                >{{ cedula.cedula }} - {{ cedula.especialidad }} ({{
+                  cedula.institucion
+                }})</span
+              >
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="cedulas.splice(i, 1); calcularPorcentajePerfil()"
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" (click)="agregarCedula()">
+            <mat-icon>add</mat-icon> Agregar Cédula
+          </button>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Claves de Médico -->
+      <mat-card>
+        <mat-card-title>Claves de Médico</mat-card-title>
+        <mat-card-content>
+          <div class="lista">
+            <div
+              class="lista-item"
+              *ngFor="let clave of clavesMedico; let i = index"
+            >
+              <span>{{ clave.aseguradora }} - {{ clave.clave }}</span>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="clavesMedico.splice(i, 1); calcularPorcentajePerfil()"
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="agregarClaveMedico()"
+          >
+            <mat-icon>add</mat-icon> Agregar Clave
+          </button>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Dirección del Consultorio -->
+      <mat-card>
+        <mat-card-title>Dirección del Consultorio</mat-card-title>
+        <mat-card-content>
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Código Postal</mat-label>
+              <input matInput [(ngModel)]="cp" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Estado</mat-label>
+              <input matInput [(ngModel)]="estado" readonly />
+            </mat-form-field>
+          </div>
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Municipio / Alcaldía</mat-label>
+              <input matInput [(ngModel)]="municipio" readonly />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Colonia</mat-label>
+              <input matInput [(ngModel)]="colonia" />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <div class="guardar-container">
+        <button mat-raised-button color="accent" (click)="guardarPerfil()">
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 Tratamientos Individualizados, S.A. de C.V.</p>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

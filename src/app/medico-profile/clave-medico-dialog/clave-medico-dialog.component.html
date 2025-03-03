@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Agregar Clave de Médico</h2>
+<div mat-dialog-content>
+  <div class="dialog-content">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Aseguradora</mat-label>
+      <mat-select [(ngModel)]="aseguradora">
+        <mat-option *ngFor="let a of aseguradoras" [value]="a">{{ a }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Institución</mat-label>
+      <mat-select [(ngModel)]="institucion">
+        <mat-option *ngFor="let i of instituciones" [value]="i">{{ i }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Clave de Médico</mat-label>
+      <input matInput [(ngModel)]="clave" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onAgregar()">Agregar</button>
+</div>

@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+h2[mat-dialog-title] {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+mat-dialog-content {
+  padding: 0; /* Elimino padding extra del contenedor */
+}
+
+/* Contenedor que permite scroll si el contenido excede la altura */
+.scroll-container {
+  max-height: 70vh; /* Ajusta este valor según lo requieras */
+  overflow-y: auto;
+  padding-right: 8px; /* Espacio para la barra de scroll */
+  margin-bottom: 16px;
+}
+
+.dialog-description {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+}
+
+/* Organización en filas flexibles */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Campos flexibles que ocupan 50% en pantallas grandes */
+.flex-field {
+  flex: 1 1 calc(50% - 16px);
+  min-width: 150px;
+}
+
+/* Caja pequeña para la 'Sección' de nómina */
+.small-nomina-field {
+  width: 80px;
+  flex: 0 0 auto;
+}
+
+/* Para checkbox de ancho completo */
+.full-width-checkbox {
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* Input que ocupa el 100% del contenedor */
+.full-width {
+  flex: 1 1 100%;
+}
+
+/* Etiqueta para radio group */
+.radio-label {
+  font-weight: bold;
+  margin-right: 8px;
+  align-self: center;
+}
+
+.radio-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.radio-option {
+  margin-left: 16px;
+}
+
+/* Separador entre la nómina y la sección */
+.separator {
+  font-weight: bold;
+  font-size: 1.2rem;
+  align-self: center;
+}
+
+mat-dialog-actions {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

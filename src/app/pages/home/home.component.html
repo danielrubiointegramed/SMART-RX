@@ -1,0 +1,250 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Drawer IZQUIERDO (Menú lateral) -->
+  <mat-sidenav class="sidenav" mode="side" [opened]="drawerOpen" [fixedInViewport]="true" position="start">
+    <div class="profile-section">
+      <button mat-icon-button [routerLink]="['/medico-profile']">
+        <mat-icon>person</mat-icon>
+      </button>
+      <div class="user-info">
+        <h3>{{ userName }}</h3>
+        <span>{{ userSubtitle }}</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <mat-list-item (click)="cambiarContrasena(); toggleDrawer()" routerLink="/change-password">
+        <mat-icon>lock</mat-icon>
+        <span>Actualizar contraseña</span>
+      </mat-list-item>
+      <mat-list-item (click)="descargarAviso(); toggleDrawer()">
+        <mat-icon>download</mat-icon>
+        <span>Descargar aviso personalizado</span>
+      </mat-list-item>
+      <mat-list-item (click)="irAvisoPrivacidad(); toggleDrawer()">
+        <mat-icon>health_and_safety</mat-icon>
+        <span>Aviso de privacidad</span>
+      </mat-list-item>
+      <mat-list-item (click)="irTerminosCondiciones(); toggleDrawer()">
+        <mat-icon>gavel</mat-icon>
+        <span>Términos y condiciones</span>
+      </mat-list-item>
+      <mat-list-item (click)="salir(); toggleDrawer()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Salir</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Drawer DERECHO (Bolsa de medicamentos) -->
+  <mat-sidenav class="bag-sidenav" mode="over" [opened]="bagOpen" [fixedInViewport]="true" position="end">
+    <!-- Encabezado -->
+    <div class="bag-header">
+      <div class="bag-title-container">
+        <mat-icon class="bag-icon"
+          [matBadge]="bagCount"
+          [matBadgeHidden]="bagCount === 0"
+          matBadgeColor="warn">
+          medical_services
+        </mat-icon>
+        <span class="bag-title">Apartado de medicamentos</span>
+      </div>
+      <button mat-icon-button (click)="toggleBag()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="bag-content">
+      <p class="bag-subtitle">
+        Administra aquí los medicamentos que has seleccionado.
+      </p>
+
+      <!-- Lista de medicamentos -->
+      <div class="bag-items-list">
+        <mat-card class="bag-item" *ngFor="let med of bagItems; let i = index">
+          <div class="bag-item-info">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Nombre comercial</mat-label>
+              <input matInput [(ngModel)]="med.nombreComercial" (keyup.enter)="updateItem(i)" />
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="small-field">
+              <mat-label>Cantidad</mat-label>
+              <input matInput type="number" [(ngModel)]="med.cantidad" (keyup.enter)="updateItem(i)" />
+            </mat-form-field>
+          </div>
+          <div class="bag-item-actions">
+            <button mat-icon-button color="warn" (click)="deleteItem(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="sumarItem(i)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </div>
+
+      <!-- Sección de acciones finales -->
+      <div class="bag-actions">
+        <button mat-raised-button color="primary" (click)="actualizarBolsa()">Actualizar</button>
+        <button mat-raised-button color="warn" (click)="vaciarBag()">Vaciar</button>
+        <button mat-raised-button color="accent" (click)="descargarReceta()">Descargar receta</button>
+        <button mat-raised-button color="primary" (click)="enviarReceta()">Enviar receta</button>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <mat-sidenav-content>
+    <!-- Barra superior -->
+    <mat-toolbar class="top-bar">
+      <button mat-icon-button (click)="toggleDrawer()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="title">Consulta de medicamentos</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="toggleTheme()">
+        <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+      <button mat-icon-button (click)="toggleBag()">
+        <mat-icon>medical_services</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Sección principal -->
+    <div class="main-content">
+      <!-- Subheader -->
+      <div class="subheader">
+        <p>
+          <strong>Buen día:</strong> Dr(a). {{ userName }} <br />
+          Por favor seleccione el estado y/o plan de búsqueda, posteriormente ingrese el nombre del medicamento que requiera.
+        </p>
+      </div>
+
+    <!-- Sección de ID Card -->
+<div class="idcard-selector">
+  <p>
+    Por favor seleccione la Cédula con la que desea prescribir, y posteriormente la Clave de Médico que usará:
+  </p>
+  <div class="idcard-select-fields">
+    <mat-form-field appearance="fill">
+      <mat-label>Cédula</mat-label>
+      <mat-select [(ngModel)]="selectedCedula">
+        <mat-option *ngFor="let card of cedulas" [value]="card">
+          {{ card.cedula }} - {{ card.especialidad }} ({{ card.institucion }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Clave de Médico</mat-label>
+      <mat-select [(ngModel)]="selectedClave">
+        <mat-option *ngFor="let card of clavesMedico" [value]="card">
+          {{ card.aseguradora }} - {{ card.clave }} ({{ card.institucion }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="router.navigate(['/medico-profile'])">
+      <mat-icon>add</mat-icon> Agregar Clave o Cédula
+    </button>
+  </div>
+</div>
+
+      <!-- Sección de búsqueda de medicamentos -->
+      <hr />
+      <p>
+        Escriba el nombre comercial del medicamento. Haremos una búsqueda, y en los resultados incluiremos algunas alternativas y sugerencias.
+      </p>
+      <div class="search-section">
+        <label for="medicamento">Medicamento:</label>
+        <input id="medicamento" matInput placeholder="Escriba o busque medicamento" [(ngModel)]="searchTerm" />
+        <button mat-raised-button color="primary" style="margin-left: 10px" (click)="buscarMedicamento()">
+          Buscar
+        </button>
+      </div>
+
+      <!-- Tabla de medicamentos -->
+      <div class="table-container" *ngIf="searchResults.length > 0">
+        <table class="med-table">
+          <thead>
+            <tr>
+              <th>Nombre comercial</th>
+              <th>Principio activo</th>
+              <th>Laboratorio</th>
+              <th>Estatus</th>
+              <th>Seleccionar</th>
+              <th>Reportar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let med of searchResults" [ngClass]="getRowClass(med.estatus)">
+              <td>{{ med.nombreComercial }}</td>
+              <td>{{ med.principioActivo }}</td>
+              <td>{{ med.laboratorio }}</td>
+              <td>
+                {{ med.estatus }}
+                <button *ngIf="med.estatus.toLowerCase().includes('cat')" mat-icon-button matTooltip="Llamar a CAT al 800-XXX-XXXX">
+                  <mat-icon>phone</mat-icon>
+                </button>
+                <button *ngIf="isQuestionMarkStatus(med.estatus)" mat-icon-button [matTooltip]="getStatusTooltip(med.estatus)">
+                  <mat-icon>help_outline</mat-icon>
+                </button>
+              </td>
+              <td>
+                <button mat-icon-button color="primary" (click)="seleccionar(med)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </td>
+              <td>
+                <button mat-icon-button color="warn" (click)="reportar(med)">
+                  <mat-icon>error_outline</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mensaje cuando no hay resultados -->
+      <div class="no-results" *ngIf="searchTerm && searchResults.length === 0">
+        <p>No se encontraron resultados para "{{ searchTerm }}".</p>
+      </div>
+
+      <!-- Leyenda de colores e íconos -->
+      <div class="status-legend">
+        <div class="legend-item">
+          <span class="status-indicator green-status"></span>
+          <span>Disponible</span>
+        </div>
+        <div class="legend-item">
+          <span class="status-indicator yellow-status"></span>
+          <span>
+            Disponible / Requiere CAT
+            <button mat-icon-button matTooltip="El producto se encuentra disponible pero es necesario solicitar CAT">
+              <mat-icon>help_outline</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Llamar a CAT al 800-XXX-XXXX">
+              <mat-icon>phone</mat-icon>
+            </button>
+          </span>
+        </div>
+        <div class="legend-item">
+          <span class="status-indicator pink-status"></span>
+          <span>
+            No Autorizado / Faltante
+            <button mat-icon-button matTooltip="El producto se encuentra en faltantes o no autorizado">
+              <mat-icon>help_outline</mat-icon>
+            </button>
+          </span>
+        </div>
+        <div class="legend-item">
+          <span class="status-indicator orange-status"></span>
+          <span>En reposición</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 Tratamientos Individualizados, S.A. de C.V.</p>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

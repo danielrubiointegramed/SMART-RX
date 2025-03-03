@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Prescripción</h2>
+<div mat-dialog-content>
+  <p class="med-name"><strong>{{ data.medicamento.nombreComercial }}</strong></p>
+
+  <div class="form-group">
+    <mat-form-field appearance="outline">
+      <mat-label>Cantidad</mat-label>
+      <input matInput type="number" [(ngModel)]="cantidad" />
+    </mat-form-field>
+
+    <span class="label"> C/ </span>
+
+    <mat-form-field appearance="outline">
+      <mat-label>HR(S) POR</mat-label>
+      <input matInput [(ngModel)]="frecuencia" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Días</mat-label>
+      <input matInput type="number" [(ngModel)]="duracion" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Indicaciones Médicas</mat-label>
+      <textarea matInput rows="3" [(ngModel)]="indicaciones"></textarea>
+    </mat-form-field>
+  </div>
+</div>
+<div class="btn" align="end">
+  <button mat-button (click)="onCancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onAgregar()">Agregar</button>
+</div>

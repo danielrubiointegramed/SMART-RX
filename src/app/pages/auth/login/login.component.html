@@ -1,0 +1,55 @@
+<!-- Contenedor principal a dos columnas -->
+<div class="login-container">
+  <!-- Sección izquierda (texto + logo) -->
+  <div class="left-section">
+    <h1 class="welcome-text">Bienvenido</h1>
+    <div class="logo"></div>
+  </div>
+
+  <!-- Sección derecha (formulario) -->
+  <div class="right-section">
+    <mat-card class="login-card">
+      <mat-card-content>
+        <h2>Inicia sesión</h2>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo electronico</mat-label>
+            <input matInput formControlName="email" type="text" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+            <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="btn-container" routerLink="/home">
+            <button mat-raised-button color="primary" type="submit" [disabled]="isLocked">
+              Ingresar
+            </button>
+          </div>
+
+          <div class="links">
+            <a routerLink="/auth/signup">Registro</a>
+            <a routerLink="/auth/recovery">¿No recuerdas tu contraseña?</a>
+          </div>
+
+        </form>
+
+        <!-- Mensajes de error -->
+        <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <div class="error-message" *ngIf="isLocked">
+          <strong>Usuario bloqueado tras 3 intentos fallidos.</strong>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Footer (centrado y al final) -->
+<footer class="footer">
+  &copy; 2025 Tratamientos Individualizados, S.A. de C.V.
+</footer>

@@ -1,0 +1,255 @@
+/* ===================== TEMAS ===================== */
+:host(.light-theme) {
+  --bg-color: #ffffff;
+  --text-color: #4E1046;
+  --toolbar-bg: #f5f5f5;
+  --toolbar-text: #4E1046;
+  --drawer-bg: #eeeeee;
+  --drawer-text: #4E1046;
+  --card-bg: #fefefe;
+  --card-text: #4E1046;
+  --border-color: #ccc;
+  /* Color "médico" (Azul Material) */
+  --highlight-color: #2196f3;
+}
+
+:host(.dark-theme) {
+  --bg-color: #1e1e1e;
+  --text-color: #f5f5f5;
+  --toolbar-bg: #292929;
+  --toolbar-text: #f5f5f5;
+  --drawer-bg: #2f2f2f;
+  --drawer-text: #f5f5f5;
+  --card-bg: #363636;
+  --card-text: #ffffff;
+  --border-color: #555;
+  --highlight-color: #2196f3;
+}
+
+/* ===================== ESTILOS GLOBALES ===================== */
+:host {
+  display: block;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+:host .mat-sidenav-content,
+:host .mat-drawer-content {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* ===================== SIDENAV ===================== */
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 250px;
+  background-color: var(--drawer-bg);
+  color: var(--drawer-text);
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.profile-section button {
+  margin-right: 8px;
+}
+
+.profile-section button mat-icon {
+  color: var(--drawer-text) !important;
+}
+
+.profile-section .user-info h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.profile-section .user-info span {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.mat-nav-list {
+  font-size: 0.9rem;
+}
+
+/* ===================== TOOLBAR ===================== */
+.top-bar {
+  background-color: var(--toolbar-bg) !important;
+  color: var(--toolbar-text) !important;
+  border-bottom: 4px solid var(--highlight-color);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  position: relative;
+  height: 64px;
+}
+
+.top-bar .title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* ===================== CONTENIDO ===================== */
+.content-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.profile-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 16px;
+}
+
+/* Encabezado del perfil */
+.profile-header-card {
+  margin-bottom: 24px;
+}
+
+.profile-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile-details {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+.profile-details h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.profile-details p {
+  margin: 4px 0 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* ===================== ESTADO / BARRA DE PROGRESO ===================== */
+.status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.material-symbols-outlined.md-48 { font-size: 98px; }
+
+/* Barra de progreso lineal */
+.status-bar {
+  width: 60%;
+  --mat-progress-bar-height: 16px;
+  border-radius: 8px;
+}
+
+/* Etiqueta de porcentaje */
+.status-label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* ===================== TARJETAS ===================== */
+mat-card {
+  margin: 16px 0;
+  background-color: var(--card-bg) !important;
+  color: var(--card-text) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+mat-card-title {
+  font-size: 1.3rem;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+}
+
+/* ===================== FORMULARIOS ===================== */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+mat-form-field {
+  flex: 1 1 calc(50% - 16px);
+  min-width: 150px;
+}
+
+.full-width {
+  flex: 1 1 100%;
+}
+
+/* ===================== LISTAS (Cédulas / Claves) ===================== */
+.lista {
+  margin-bottom: 16px;
+}
+
+.lista-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* ===================== BOTÓN GUARDAR ===================== */
+.guardar-container {
+  text-align: center;
+  margin-top: 24px;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 1.2rem;
+  }
+  .sidenav {
+    width: 200px;
+  }
+  mat-form-field {
+    flex: 1 1 100%;
+  }
+  .profile-container {
+    padding: 8px;
+  }
+  .profile-header-content {
+    flex-direction: column;
+    align-items: center;
+  }
+}

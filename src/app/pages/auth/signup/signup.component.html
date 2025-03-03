@@ -1,0 +1,131 @@
+
+<!-- Contenedor principal a dos columnas -->
+<div class="auth-container">
+  <!-- Sección izquierda: Logo y mensaje -->
+  <div class="left-section">
+    <h1 class="welcome-text">Regístrate</h1>
+    <div class="logo" routerLink="/login"></div>
+    <button mat-raised-button color="primary" class="home-btn" (click)="goLogin()">
+      Regresar al inicio de sesión
+    </button>
+  </div>
+
+  <!-- Sección derecha: Tarjeta de Registro -->
+  <div class="right-section">
+    <mat-card class="auth-card">
+      <mat-card-content>
+        <p class="instruction-text">
+          Por favor, llene los siguientes campos para completar su registro:
+        </p>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+          <!-- Correo electrónico -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              Correo electrónico
+            </mat-label>
+            <input matInput formControlName="email" type="email" />
+          </mat-form-field>
+
+          <!-- Cédula profesional y botón de validación -->
+          <div class="cedula-row">
+            <mat-form-field appearance="outline" class="cedula-field">
+              <mat-label>
+                Cédula profesional
+              </mat-label>
+              <input matInput formControlName="cedula" type="text" />
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="button" (click)="onValidateCedula()">
+              Validar cédula
+            </button>
+          </div>
+
+          <!-- Nombre(s) -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              Nombre(s)
+            </mat-label>
+            <input matInput formControlName="firstName" type="text" />
+          </mat-form-field>
+
+          <!-- Apellido paterno -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              Apellido paterno
+            </mat-label>
+            <input matInput formControlName="lastName" type="text" />
+          </mat-form-field>
+
+          <!-- Apellido materno (opcional) -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Apellido materno</mat-label>
+            <input matInput formControlName="secondLastName" type="text" />
+          </mat-form-field>
+
+          <!-- Especialidad (opcional) -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Especialidad</mat-label>
+            <input matInput formControlName="specialty" type="text" />
+          </mat-form-field>
+
+          <p class="instruction-text">
+            Elija una contraseña segura (mínimo 8 caracteres, al menos 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial).
+          </p>
+
+          <!-- Contraseña -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              Contraseña
+            </mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+            <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- Repetir contraseña -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              Repita contraseña
+            </mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+            <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- Checkbox de términos -->
+          <div class="terms-check">
+            <mat-checkbox formControlName="acceptTerms">
+              <span class="terms-text">
+                He leído y acepto la
+                <a routerLink="/privacy">política de privacidad</a> y los
+                <a routerLink="/terms">términos y condiciones</a> del servicio.
+              </span>
+            </mat-checkbox>
+          </div>
+
+          <!-- Mensajes de error -->
+          <div class="error-message" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Botón de Registro -->
+          <div class="btn-container">
+            <button mat-raised-button color="accent" type="submit">
+              Registrarme
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <a routerLink="/privacy">Aviso de privacidad</a> |
+  <a routerLink="/terms">Términos y condiciones</a>
+  <br />
+  <span>&copy; {{ currentYear }} Tratamientos Individualizados, S.A. de C.V.</span>
+</footer>

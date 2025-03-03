@@ -1,0 +1,117 @@
+<h2 mat-dialog-title>Agregar número de nómina</h2>
+<div mat-dialog-content>
+  <div class="scroll-container">
+    <p class="dialog-description">
+      El proceso de apartado de medicamentos requiere el número de nómina de su
+      Paciente. Por favor, escríbalo completo.
+    </p>
+
+    <!-- Número de nómina en dos campos -->
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>Número de nómina *</mat-label>
+        <input matInput [(ngModel)]="numeroNomina" />
+      </mat-form-field>
+
+      <span class="separator">-</span>
+
+      <mat-form-field appearance="outline" class="small-nomina-field">
+        <mat-label>Sección</mat-label>
+        <input matInput [(ngModel)]="numeroNomina2" />
+      </mat-form-field>
+    </div>
+
+    <!-- Checkbox de confirmación -->
+    <mat-checkbox [(ngModel)]="confirmoAviso" class="full-width-checkbox">
+      Confirmo que he entregado al Paciente mi aviso de privacidad como Médico.
+    </mat-checkbox>
+
+    <!-- Nombre y Edad -->
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="nombre" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>Edad</mat-label>
+        <input matInput type="number" [(ngModel)]="edad" />
+      </mat-form-field>
+    </div>
+
+    <!-- Alergias -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Alergias</mat-label>
+      <input matInput [(ngModel)]="alergias" />
+    </mat-form-field>
+
+    <!-- Género -->
+    <div class="form-row">
+      <span class="radio-label">Género:</span>
+      <mat-radio-group [(ngModel)]="genero" class="radio-group">
+        <mat-radio-button value="Masculino">Masculino</mat-radio-button>
+        <mat-radio-button value="Femenino" class="radio-option">
+          Femenino
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <!-- CIE e IMC -->
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>CIE</mat-label>
+        <input matInput [(ngModel)]="cie" />
+      </mat-form-field>
+
+      <!-- IMC calculado automáticamente -->
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>IMC</mat-label>
+        <!-- Se muestra en tiempo real el valor calculado en el TS -->
+        <input matInput [value]="imc | number:'1.2-2'" readonly />
+      </mat-form-field>
+    </div>
+
+    <!-- Peso y Altura -->
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>Peso (kg)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="peso"
+          (ngModelChange)="updateIMC()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>Altura (m)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="altura"
+          (ngModelChange)="updateIMC()"
+        />
+      </mat-form-field>
+    </div>
+
+    <!-- Temperatura y FR -->
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>Temperatura (°C)</mat-label>
+        <input matInput type="number" [(ngModel)]="temperatura" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="flex-field">
+        <mat-label>FR</mat-label>
+        <input matInput type="number" [(ngModel)]="fr" />
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onAgregar()">
+    Agregar
+  </button>
+</div>

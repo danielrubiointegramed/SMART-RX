@@ -1,0 +1,49 @@
+<div class="auth-container">
+  <!-- Sección izquierda: Título y Logo -->
+  <div class="left-section">
+    <h1 class="welcome-text">Recuperar contraseña</h1>
+    <div class="logo" routerLink="/login"></div>
+    <button mat-raised-button color="primary" class="home-btn" (click)="goLogin()">
+      Regresar al inicio de sesión
+    </button>
+  </div>
+
+  <!-- Sección derecha: Tarjeta con formulario -->
+  <div class="right-section">
+    <mat-card class="auth-card">
+      <mat-card-content>
+        <h2>Recuperar</h2>
+        <form [formGroup]="recoveryForm" (ngSubmit)="onRecover()">
+          <p class="instruction-text">
+            Ingrese su correo electrónico para recuperar su contraseña:
+          </p>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              Correo electrónico
+            </mat-label>
+            <input matInput formControlName="email" type="email" />
+          </mat-form-field>
+
+          <!-- Mensajes de error y éxito -->
+          <div class="error-message" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+          <div class="success-message" *ngIf="successMessage">
+            {{ successMessage }}
+          </div>
+
+          <div class="btn-container">
+            <button mat-raised-button color="primary" type="submit">
+              Recuperar
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+
+
+<footer class="footer">
+  &copy; 2025 Tratamientos Individualizados, S.A. de C.V.
+</footer>

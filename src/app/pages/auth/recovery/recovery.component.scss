@@ -1,0 +1,162 @@
+/****************************************
+  Barra Superior
+*****************************************/
+.top-bar {
+  background-color: #4e4e4e !important; /* Fondo gris */
+  border-bottom: 14px solid #8e2e7d;       /* Línea inferior en #8e2e7d */
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  color: #fff;
+  font-size: 20px;
+
+  .title {
+    flex: 1;
+    text-align: center;
+    font-size: inherit;
+    font-weight: 500;
+  }
+}
+
+/****************************************
+  Contenedor Principal (Layout a dos columnas)
+*****************************************/
+.auth-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: calc(100vh - 68px);
+  background-color: #fff;
+  padding: 2rem;
+
+  /* Para pantallas pequeñas, apilar en columna */
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  .left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+
+    .welcome-text {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #000;
+    }
+
+    .logo {
+      width: 300px;
+      height: 120px;
+      background: url('../../../../assets/img/logosmart.png') no-repeat center center;
+      background-size: contain;
+      cursor: pointer;             /* Indica que es clickeable */
+      display: inline-block;       /* Para que respete dimensiones y margin/padding */
+      border: 2px solid transparent; /* Borde inicial transparente */
+      border-radius: 8px;          /* Bordes redondeados */
+      transition: border-color 0.3s, transform 0.3s; /* Transición suave */
+      padding: 0.5rem;             /* Opcional, para darle un espacio interno */
+    }
+
+    .logo:hover {
+      border-color: #1976D2;       /* Cambia el color del borde al pasar el cursor */
+      transform: scale(1.02);      /* Le da un efecto de "pop" */
+    }
+  }
+
+  .right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+}
+
+/****************************************
+  Tarjeta de Recuperación (Formulario)
+*****************************************/
+.auth-card {
+  width: 320px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1.5rem;
+
+  h2 {
+    margin: 0 0 1rem;
+    color: #000;
+    text-align: center;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .full-width {
+      width: 100%;
+    }
+
+    .required {
+      color: #ff5252;
+      font-weight: bold;
+      margin-left: 4px;
+    }
+  }
+
+  .instruction-text {
+    font-size: 0.95rem;
+    color: #555;
+    text-align: center;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}
+
+/****************************************
+  Mensajes de Error y Éxito
+*****************************************/
+.error-message {
+  color: #ff5252;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/****************************************
+  Enlaces
+*****************************************/
+.links {
+  margin-top: 1rem;
+  a {
+    text-decoration: underline;
+    color: #000;
+    margin: 0 4px;
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  bottom: center;
+  padding: 1rem 0;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #000;
+}

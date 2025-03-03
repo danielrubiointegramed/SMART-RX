@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Agregar Cédula Profesional</h2>
+<div mat-dialog-content>
+  <div class="dialog-content">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Cédula Profesional</mat-label>
+      <input matInput [(ngModel)]="cedula" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Especialidad</mat-label>
+      <input matInput [(ngModel)]="especialidad" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Institución</mat-label>
+      <input matInput [(ngModel)]="institucion" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onAgregar()">Agregar</button>
+</div>

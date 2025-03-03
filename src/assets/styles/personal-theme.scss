@@ -1,0 +1,268 @@
+@use '@angular/material'as mat;
+
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
+@include mat.all-legacy-component-typographies();
+@include mat.legacy-core();
+
+// GAMA DE COLORES
+$my-primary-color: (
+    50 : #e0e7ed,
+    100 : #b3c2d1,
+    200 : #809ab3,
+    300 : #4d7194,
+    400 : #26527d,
+    500 : #003466,
+    600 : #002f5e,
+    700 : #002753,
+    800 : #002149,
+    900 : #001538,
+    A100 : #6e93ff,
+    A200 : #3b6cff,
+    A400 : #0846ff,
+    A700 : #003bee,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+$my-accent-color: (
+    50 : #fce3f1,
+    100 : #f8b9dc,
+    200 : #f38bc5,
+    300 : #ee5dae,
+    400 : #ea3a9c,
+    500 : #e6178b,
+    600 : #e31483,
+    700 : #df1178,
+    800 : #db0d6e,
+    900 : #d5075b,
+    A100 : #fffefe,
+    A200 : #ffcbde,
+    A400 : #ff98bd,
+    A700 : #ff7fac,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$my-warning-color:(
+    50 : #fee8e7,
+    100 : #fcc7c3,
+    200 : #faa19b,
+    300 : #f77b72,
+    400 : #f65f54,
+    500 : #f44336,
+    600 : #f33d30,
+    700 : #f13429,
+    800 : #ef2c22,
+    900 : #ec1e16,
+    A100 : #ffffff,
+    A200 : #ffe9e9,
+    A400 : #ffb8b6,
+    A700 : #ff9f9c,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$my-caution-color: (
+    50 : #fefeee,
+    100 : #fdfdd4,
+    200 : #fcfcb8,
+    300 : #fbfa9c,
+    400 : #faf986,
+    500 : #f9f871,
+    600 : #f8f769,
+    700 : #f7f65e,
+    800 : #f6f554,
+    900 : #f5f342,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffdf,
+    A700 : #fffec6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$my-primary-color-dark: (
+  50 : #eef2ff,
+  100 : #d4dfff,
+  200 : #b7c9ff,
+  300 : #9ab3ff,
+  400 : #84a3ff,
+  500 : #6e93ff,
+  600 : #668bff,
+  700 : #5b80ff,
+  800 : #5176ff,
+  900 : #3f64ff,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #e7ebff,
+  A700 : #ced6ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+$my-confirm-color: (
+    50 : #f0fbef,
+    100 : #daf5d8,
+    200 : #c1eebe,
+    300 : #a8e7a4,
+    400 : #96e291,
+    500 : #83dd7d,
+    600 : #7bd975,
+    700 : #70d46a,
+    800 : #66cf60,
+    900 : #53c74d,
+    A100 : #ffffff,
+    A200 : #f0fff0,
+    A400 : #c0ffbd,
+    A700 : #a7ffa3,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$smart-rx-angular-primary: mat.define-palette($my-primary-color);
+$smart-rx-angular-primary-dark: mat.define-palette($my-primary-color-dark);
+$smart-rx-angular-accent: mat.define-palette($my-accent-color);
+$smart-rx-angular-warn: mat.define-palette($my-warning-color);
+$smart-rx-angular-caution: mat.define-palette($my-caution-color);
+$smart-rx-angular-confirm: mat.define-palette($my-confirm-color);
+
+$smart-rx-angular-theme-light: mat.define-light-theme((color: (
+            primary: $smart-rx-angular-primary,
+            accent: $smart-rx-angular-accent,
+            warn: $smart-rx-angular-warn,
+            caution: $smart-rx-angular-caution,
+            confirm: $smart-rx-angular-confirm,
+        )));
+
+$smart-rx-angular-theme-dark: mat.define-dark-theme((color: (
+            primary: $smart-rx-angular-primary-dark,
+            accent: $smart-rx-angular-accent,
+            warn: $smart-rx-angular-warn,
+            caution: $smart-rx-angular-caution,
+            confirm: $smart-rx-angular-confirm,
+        )));
+
+// @include mat.all-component-themes($smart-rx-angular-theme-light);
+
+.light-theme {
+    @include mat.all-legacy-component-themes($smart-rx-angular-theme-light);
+}
+
+.dark-theme {
+    @include mat.all-legacy-component-themes($smart-rx-angular-theme-dark);
+}
+
+.successfulAlert{
+    background: #ffffff  !important;
+    color: #000000  !important;
+    border: 1px solid map-get($my-primary-color, 300) !important;
+    border-left : 15px solid map-get($my-primary-color, 300) !important;
+}
+
+.warningAlert{
+    background: #ffffff  !important;
+    color: #000000 !important;
+    border: 1px solid map-get($my-caution-color, 300) !important;
+    border-left : 15px solid map-get($my-caution-color, 300) !important;
+}
+
+.errorAlert{
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid map-get($my-warning-color, 300) !important;
+    border-left : 15px solid map-get($my-warning-color, 300) !important;
+}
+
+.mat-slide-toggle-bar {
+    background-color: map-get($my-accent-color, A200) !important;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: map-get($my-accent-color, 200) !important;
+}

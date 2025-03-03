@@ -1,0 +1,108 @@
+/****************************************
+  Contenedor principal a dos columnas
+*****************************************/
+.login-container {
+  display: flex;
+  justify-content: space-between; /* Separa izquierda y derecha */
+  align-items: center;
+  min-height: 100vh;             /* Ocupa toda la pantalla */
+  background-color: #fff;        /* Fondo blanco */
+  padding: 0 2rem;               /* Espacio horizontal */
+
+
+  .left-section {
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+    .welcome-text {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      margin-left: 100px;
+      color: #000;  /* Texto negro */
+    }
+    .logo {
+      width: 350px;
+      height: 100px;
+      background: url('../../../../assets/img/logosmart.png') no-repeat center center;
+      background-size: contain;
+    }
+
+  }
+
+  /* Sección derecha (formulario) */
+  .right-section {
+    flex: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* Centra verticalmente el mat-card */
+  }
+}
+
+/****************************************
+  Tarjeta de Login
+*****************************************/
+.login-card {
+  width: 320px;
+  border: 1px solid #ccc; /* Borde sutil */
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    margin-left: 4rem;
+    color: #000;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+
+    .full-width {
+      width: 100%;
+    }
+
+    .required {
+      color: #ff5252; /* Asterisco en rojo */
+      font-weight: bold;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    a {
+      text-decoration: underline;
+      color: #000;
+      margin: 3 4px;
+    }
+  }
+}
+
+/****************************************
+  Mensajes de Error
+*****************************************/
+.error-message {
+  color: red;
+  margin-top: 0.5rem;
+}
+
+/****************************************
+  Footer
+*****************************************/
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #000;
+}

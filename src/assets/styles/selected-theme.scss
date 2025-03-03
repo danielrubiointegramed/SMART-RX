@@ -1,0 +1,143 @@
+@use '@angular/material'as mat;
+
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
+@include mat.all-legacy-component-typographies();
+@include mat.legacy-core();
+
+// GAMA DE COLORES
+$my-primary-color:(50 : #e7f3ee,
+    100 : #c3e2d4,
+    200 : #9bcfb8,
+    300 : #73bc9c,
+    400 : #55ad86,
+    500 : #379f71,
+    600 : #319769,
+    700 : #2a8d5e,
+    800 : #238354,
+    900 : #167242,
+    A100 : #aaffd0,
+    A200 : #77ffb3,
+    A400 : #44ff97,
+    A700 : #2aff89,
+    contrast: (50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    ));
+
+$my-accent-color:(50 : #e0f1f5,
+    100 : #b3dde5,
+    200 : #80c7d4,
+    300 : #4db0c2,
+    400 : #269fb5,
+    500 : #008ea8,
+    600 : #0086a0,
+    700 : #007b97,
+    800 : #00718d,
+    900 : #005f7d,
+    A100 : #aae7ff,
+    A200 : #77d9ff,
+    A400 : #44caff,
+    A700 : #2ac3ff,
+    contrast: (50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    ));
+
+$my-warning-color:(50 : #feefec,
+    100 : #fdd8d0,
+    200 : #fcbeb0,
+    300 : #fba490,
+    400 : #fa9179,
+    500 : #f97d61,
+    600 : #f87559,
+    700 : #f76a4f,
+    800 : #f66045,
+    900 : #f54d33,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffd9d4,
+    A700 : #ffc2ba,
+    contrast: (50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    ));
+
+
+$smart-rx-angular-primary: mat.define-palette($my-primary-color);
+$smart-rx-angular-accent: mat.define-palette($my-accent-color, A200, A100, A400);
+$smart-rx-angular-warn: mat.define-palette($my-warning-color);
+
+$smart-rx-angular-theme-light: mat.define-light-theme((color: (primary: $smart-rx-angular-primary,
+            accent: $smart-rx-angular-accent,
+            warn: $smart-rx-angular-warn,
+        )));
+
+$smart-rx-angular-theme-dark: mat.define-dark-theme((color: (primary: $smart-rx-angular-primary,
+            accent: $smart-rx-angular-accent,
+            warn: $smart-rx-angular-warn,
+        )));
+
+@include mat.all-legacy-component-themes($smart-rx-angular-theme-light);
+
+.light-theme {
+    @include mat.all-legacy-component-themes($smart-rx-angular-theme-light);
+}
+
+.dark-theme {
+    @include mat.all-legacy-component-themes($smart-rx-angular-theme-dark);
+}
+
+.successfulAlert{
+    background-color: #2A8D5E!important;
+    color: #fff!important;
+}
+
+.warningAlert{
+    background-color: #E3FA16!important;
+    color: #000!important;
+}
+
+.errorAlert{
+    background-color: #f76a4f!important;
+    color: #fff!important;
+}
