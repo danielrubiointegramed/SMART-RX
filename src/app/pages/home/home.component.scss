@@ -3,13 +3,13 @@
 ============================================= */
 :host(.light-theme) {
   --bg-color: #ffffff;           /* Fondo claro */
-  --text-color: #4E1046;         /* Texto Blue Ribbon */
+  --text-color: black;
   --toolbar-bg: #f5f5f5;         /* Toolbar gris claro */
-  --toolbar-text: #4E1046;       /* Texto en toolbar */
+  --toolbar-text: black;       /* Texto en toolbar */
   --drawer-bg: #eeeeee;          /* Drawer gris */
-  --drawer-text: #4E1046;
+  --drawer-text: black;
   --card-bg: #fefefe;
-  --card-text: #4E1046;
+  --card-text: black;
   --border-color: #ccc;
   --highlight-color: #40E0D0;    /* Azul brillante */
   --btn-color: #292929;

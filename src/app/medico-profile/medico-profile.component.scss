@@ -1,16 +1,16 @@
 /* ===================== TEMAS ===================== */
 :host(.light-theme) {
   --bg-color: #ffffff;
-  --text-color: #4E1046;
+  --text-color: black;
   --toolbar-bg: #f5f5f5;
-  --toolbar-text: #4E1046;
+  --toolbar-text: black;
   --drawer-bg: #eeeeee;
-  --drawer-text: #4E1046;
+  --drawer-text: black;
   --card-bg: #fefefe;
-  --card-text: #4E1046;
+  --card-text: black;
   --border-color: #ccc;
   /* Color "médico" (Azul Material) */
-  --highlight-color: #2196f3;
+  --highlight-color: black;
 }
 
 :host(.dark-theme) {
@@ -23,7 +23,7 @@
   --card-bg: #363636;
   --card-text: #ffffff;
   --border-color: #555;
-  --highlight-color: #2196f3;
+  --highlight-color: #ffffff;
 }
 
 /* ===================== ESTILOS GLOBALES ===================== */
